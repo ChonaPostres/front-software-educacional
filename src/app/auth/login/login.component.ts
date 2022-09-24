@@ -25,6 +25,6 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/auth/register']);
   }
   doLogin() {
-    
+    this.router.navigate(['components/home']);
   }
 }

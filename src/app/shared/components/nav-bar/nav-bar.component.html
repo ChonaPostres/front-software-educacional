@@ -1,0 +1,52 @@
+<!--<ul ngbNav #nav="ngbNav" class="nav-tabs justify-content-center">
+    <ng-container ngbNavItem>
+        <a ngbNavLink routerLink="/components/home">Home</a>
+    </ng-container>
+    <ng-container ngbNavItem>
+        <a ngbNavLink routerLink="/components/ranking">Ranking</a>
+    </ng-container>
+    <li ngbDropdown class="nav-item ms-auto">
+      <a href (click)="false" class="nav-link" ngbDropdownToggle>User</a>
+      <div ngbDropdownMenu>
+        <button ngbDropdownItem disabled="">Apodo</button>
+        <button ngbDropdownItem disabled="">Nombre Usuario</button>
+        <div class="dropdown-divider"></div>
+        <button ngbDropdownItem (click)="goMyProfile()">Mi Perfil</button>
+        <div class="dropdown-divider"></div>
+        <button ngbDropdownItem (click)="disconnect()">Desconectar</button>
+      </div>
+    </li>
+  </ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+-->
+<p>
+    <mat-toolbar color="primary">
+      <button mat-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="goHome()">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
+      
+      <button mat-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="goRanking()">
+        <mat-icon>star</mat-icon>
+        <span>Ranking</span>
+      </button>
+      
+      <span class="example-spacer"></span>
+      <div ngbDropdown>
+        <button mat-icon-button class="example-icon" ngbDropdownToggle>
+            <mat-icon>person</mat-icon>
+            <div ngbDropdownMenu>
+                <div ngbDropdownItem disabled="">Apodo</div>
+                <div ngbDropdownItem disabled="">Nombre Apellido</div>
+                <div class="dropdown-divider"></div>
+                <button ngbDropdownItem (click)="goMyProfile()">Mi Perfil</button>
+                <div class="dropdown-divider"></div>
+                <button ngbDropdownItem (click)="disconnect()">
+                    <mat-icon>power_settings_new</mat-icon>
+                    Desconectar
+                </button>
+            </div>
+          </button>
+      </div>
+    </mat-toolbar>
+  </p>
