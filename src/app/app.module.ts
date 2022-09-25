@@ -16,6 +16,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +27,8 @@ import {MatButtonModule} from '@angular/material/button';
     HomeComponent,
     MyProfileComponent,
     RankingComponent,
-    NavBarComponent
+    NavBarComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
