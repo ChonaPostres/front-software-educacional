@@ -21,6 +21,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { CategoryComponent } from './components/category/category.component';
 import { ActivityComponent } from './components/activity/activity.component';
+import { ActivatePasswordComponent } from './auth/activate-password/activate-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { ActivityComponent } from './components/activity/activity.component';
     NavBarComponent,
     ForgotPasswordComponent,
     CategoryComponent,
-    ActivityComponent
+    ActivityComponent,
+    ActivatePasswordComponent
   ],
   imports: [
     BrowserModule,

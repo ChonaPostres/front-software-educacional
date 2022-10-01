@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { ActivatePasswordComponent } from './auth/activate-password/activate-password.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -19,7 +20,8 @@ const appRoutes:Routes=[
   {path:'components/ranking', component:RankingComponent},
   {path:'components/my-profile', component:MyProfileComponent},
   {path:'components/category/:id', component:CategoryComponent},
-  {path:'components/activity/:id', component:ActivityComponent}
+  {path:'components/activity/:id', component:ActivityComponent},
+  {path:'auth/activate-password', component:ActivatePasswordComponent}
 ]
 
 @NgModule({
