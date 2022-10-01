@@ -1,0 +1,16 @@
+<app-nav-bar></app-nav-bar>
+<h2 class="mt-4">Categorias:</h2>
+<div class="row my-2 g-4 " *ngFor="let activity of activities">
+    <!--<div class="col">
+      <button type="button" class="btn btn-lg text-white col-12" style="background-color: blueviolet">Nombre categoria</button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-lg text-white col-12" style="background-color: blueviolet">Nombre categoria</button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-lg text-white col-12" style="background-color: blueviolet">Nombre categoria</button>
+    </div>-->
+    <div class="col">
+      <button type="button" class="btn btn-lg text-white col-12" style="background-color: blueviolet" (click)="goActivity(activity.id)">{{activity.title}}</button>
+    </div>
+</div>

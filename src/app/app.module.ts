@@ -19,6 +19,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { CategoryComponent } from './components/category/category.component';
+import { ActivityComponent } from './components/activity/activity.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,9 @@ import {MatInputModule} from '@angular/material/input';
     MyProfileComponent,
     RankingComponent,
     NavBarComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    CategoryComponent,
+    ActivityComponent
   ],
   imports: [
     BrowserModule,
