@@ -8,12 +8,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./ranking.component.scss']
 })
 export class RankingComponent implements OnInit {
+  users:any[] = [];
   constructor(
     private _formBuilder: FormBuilder,
     private router : Router
   ) { }
 
   ngOnInit(): void {
+    this.users.push({title: "Nombre Usuario", id: "1"});
+    this.users.push({title: "Nombre Usuario", id: "2"});
+    this.users.push({title: "Nombre Usuario", id: "3"});
+    this.users.push({title: "Nombre Usuario", id: "4"});
+    this.users.push({title: "Nombre Usuario", id: "5"});
+    this.users.push({title: "Nombre Usuario", id: "6"});
+    this.users.push({title: "Nombre Usuario", id: "7"});
+    this.users.push({title: "Nombre Usuario", id: "8"});
+    this.users.push({title: "Nombre Usuario", id: "9"});
+    this.users.push({title: "Nombre Usuario", id: "10"});
   }
   goHome() {
     this.router.navigate(['/components/home']);
