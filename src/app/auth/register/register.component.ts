@@ -8,21 +8,23 @@ declare var $ : any;
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  /*registForm: FormGroup = this._formBuilder.group({
-    nickname: this._formBuilder.control({value:'', disabled: false}, [Validators.required]),
-    name: this._formBuilder.control({value:'', disabled: false}, [Validators.required]),
-    lastName: this._formBuilder.control({value:'', disabled: false}, [Validators.required]),
-    email: this._formBuilder.control({value:'', disabled: false}, [Validators.required, Validators.email]),
-    password: this._formBuilder.control({value:'', disabled: false}, [Validators.required]),
-  });*/
+  registForm: FormGroup;
   constructor(
     private _formBuilder: FormBuilder,
     private router : Router
-    ) { }
+    ) {
+      this.registForm = this._formBuilder.group({
+        nickname: this._formBuilder.control({value:'', disabled: false}, [Validators.required]),
+        name: this._formBuilder.control({value:'', disabled: false}, [Validators.required]),
+        lastName: this._formBuilder.control({value:'', disabled: false}, [Validators.required]),
+        email: this._formBuilder.control({value:'', disabled: false}, [Validators.required, Validators.email]),
+        password: this._formBuilder.control({value:'', disabled: false}, [Validators.required]),
+      });
+     }
 
   ngOnInit(): void {
-    $(function() {
-      //$("#login").prop("disabled", true)
+    /*$(function() {
+      $("#login").prop("disabled", true)
       if($("#registration").length) {
         $("#nickname").blur(function() {
           if ($("#registration").valid() == false) {
@@ -105,7 +107,7 @@ export class RegisterComponent implements OnInit {
         });
       }
 
-    });
+    });*/
   }
   doRegist() {
     this.router.navigate(['/auth/login']);

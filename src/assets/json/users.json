@@ -1,0 +1,72 @@
+[
+    {
+        "id": "1",
+        "nickname": "BellBoy",
+        "name": "nombre",
+        "lastName": "lastName",
+        "email": "pasquale28@gmail.com"
+    },
+    {
+        "id": "2",
+        "nickname": "Pralltiller",
+        "name": "nombre",
+        "lastName": "lastName",
+        "email": "adrian.hills@gmail.com"
+    },
+    {
+        "id": "3",
+        "nickname": "RingRaid",
+        "name": "nombre",
+        "lastName": "lastName",
+        "email": "santiago.sauer26@gmail.com"
+    },
+    {
+        "id": "4",
+        "nickname": "BlueLagoon",
+        "name": "nombre",
+        "lastName": "lastName",
+        "email": "joyce9@gmail.com"
+    },
+    {
+        "id": "5",
+        "nickname": "KrakenBite",
+        "name": "nombre",
+        "lastName": "lastName",
+        "email": "omer16@gmail.com"
+    },
+    {
+        "id": "6",
+        "nickname": "ElectricEel",
+        "name": "nombre",
+        "lastName": "lastName",
+        "email": "ashlee_goyette17@gmail.com"
+    },
+    {
+        "id": "7",
+        "nickname": "RumpleThump",
+        "name": "nombre",
+        "lastName": "lastName",
+        "email": "mertie13@gmail.com"
+    },
+    {
+        "id": "8",
+        "nickname": "NarcCop",
+        "name": "nombre",
+        "lastName": "lastName",
+        "email": "marilou97@gmail.com"
+    },
+    {
+        "id": "9",
+        "nickname": "SlitherTuft",
+        "name": "nombre",
+        "lastName": "lastName",
+        "email": "justyn.collins@gmail.com"
+    },
+    {
+        "id": "10",
+        "nickname": "Succotash",
+        "name": "nombre",
+        "lastName": "lastName",
+        "email": "burnice56@gmail.com"
+    }
+]

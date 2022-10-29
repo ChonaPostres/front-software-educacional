@@ -6,30 +6,55 @@
     <div class="card shadow border" style="width: 18rem;">
       <div class="card-body">
         <h2 class="card-title">Registrar Cuenta</h2>
-        <form id="registration">
+        <form id="registration" [formGroup]="registForm">
           <div class="mb-4">
-              <label for="nickname" class="form-label">Apodo</label>
-              <input type="nickname" class="form-control" id="nickname" name="nickname">
+              <label class="form-label">Apodo</label>
+              <input type="nickname" class="form-control" formControlName="nickname" placeholder="Escriba su Apodo">
+              <div *ngIf="registForm.controls['nickname'].touched && registForm.controls['nickname'].errors && registForm.controls['nickname'].errors['required']"
+                      class="text text-danger mt-1">
+                      El Apodo es requerido
+              </div>
           </div>
           <div class="mb-4">
-              <label for="name" class="form-label">Nombre</label>
-              <input type="name" class="form-control" id="name" name="name">
+              <label class="form-label">Nombre</label>
+              <input type="name" class="form-control" formControlName="name" placeholder="Escriba su Nombre">
+              <div *ngIf="registForm.controls['name'].touched && registForm.controls['name'].errors && registForm.controls['name'].errors['required']"
+                      class="text text-danger mt-1">
+                      El Nombre es requerido
+              </div>
           </div>
           <div class="mb-4">
-              <label for="lastName" class="form-label">Apellido</label>
-              <input type="lastName" class="form-control" id="lastName" name="lastName">
+              <label class="form-label">Apellido</label>
+              <input type="lastName" class="form-control" formControlName="lastName" placeholder="Escriba su Apellido">
+              <div *ngIf="registForm.controls['lastName'].touched && registForm.controls['lastName'].errors && registForm.controls['lastName'].errors['required']"
+                      class="text text-danger mt-1">
+                      El Apellido es requerido
+              </div>
           </div>
           <div class="mb-4">
-              <label for="email" class="form-label">Correo electrónico</label>
-              <input type="email" class="form-control" id="email" name="email">
+              <label class="form-label">Correo electrónico</label>
+              <input formControlName="email" required email type="email" class="form-control" autocomplete="new-password" placeholder="Escriba su Correo">
+              <div *ngIf="registForm.controls['email'].errors && registForm.controls['email'].touched && registForm.controls['email'].errors['required']"
+              class="text text-danger mt-1">
+                      El Correo es requerido
+              </div>
+              <div *ngIf="registForm.controls['email'].errors && registForm.controls['email'].touched && registForm.controls['email'].errors['email']"
+              class="text text-danger mt-1">
+                      Correo con formato invalido
+              </div>
           </div>
+          
           <div class="mb-4">
-              <label for="password" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="password" name="password">
+              <label class="form-label">Contraseña</label>
+              <input type="password" class="form-control" formControlName="password" required="" placeholder="********">
+              <div *ngIf="registForm.controls['password'].touched && registForm.controls['password'].errors && registForm.controls['password'].errors['required']"
+                      class="text text-danger mt-1">
+                      La Contraseña es requerida
+              </div>
           </div>
           <div class="col">
               <div class="d-grid">
-                  <button type="submit" class="btn btn-primary" (click)="doRegist()" id="bRegistrarme" disabled="true">Registrarme</button>
+                  <button type="submit" class="btn btn-primary" (click)="doRegist()" id="bRegistrarme" [disabled]="!registForm.valid">Registrarme</button>
               </div>
           </div>
         </form>

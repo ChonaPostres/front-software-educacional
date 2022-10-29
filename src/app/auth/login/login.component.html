@@ -3,18 +3,30 @@
     <div class="card shadow border" style="width: 18rem;">
       <div class="card-body">
         <h2 class="card-title">Iniciar Sesión</h2>
-        <form id="login">
+        <form id="login" [formGroup]="loginForm">
           <div class="mb-4">
-            <label for="email" class="form-label">Correo electrónico</label>
-            <input type="email" class="form-control" id="email" name="email">
+            <label class="form-label">Correo electrónico</label>
+            <input formControlName="email" required email type="email" class="form-control" autocomplete="new-password" placeholder="Escriba su Correo">
+            <div *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].touched && loginForm.controls['email'].errors['required']"
+              class="text text-danger mt-1">
+              El Correo es requerido
+            </div>
+            <div *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].touched && loginForm.controls['email'].errors['email']"
+              class="text text-danger mt-1">
+              Correo con formato invalido
+            </div>
           </div>
           <div class="mb-4">
-            <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="password" name="password">
+            <label class="form-label">Contraseña</label>
+            <input type="password" class="form-control" formControlName="password" required="" placeholder="********">
+            <div *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors && loginForm.controls['password'].errors['required']"
+                      class="text text-danger mt-1">
+                      La Contraseña es requerida
+            </div>
           </div>
             <div class="col">
                 <div class="d-grid mb-4">
-                    <button type="submit" class="btn btn-primary" (click)="doLogin() "id="bLogin" disabled="true">Iniciar Sesión</button>
+                    <button type="submit" class="btn btn-primary" (click)="doLogin() "id="bLogin" [disabled]="!loginForm.valid" >Iniciar Sesión</button>
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary" (click)="doRegist()">Registrarse</button>

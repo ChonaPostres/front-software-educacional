@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class ActivatePasswordComponent implements OnInit {
   registerForm: FormGroup = this._formBuilder.group({
-    newPassword: this._formBuilder.control({value:'', disabled: false}),
-    confirmNewPassword: this._formBuilder.control({value:'', disabled: false}),
+    newPassword: this._formBuilder.control({value:'', disabled: false}, [Validators.required]),
+    confirmNewPassword: this._formBuilder.control({value:'', disabled: false}, [Validators.required]),
   });
   constructor(
     private _formBuilder: FormBuilder,
