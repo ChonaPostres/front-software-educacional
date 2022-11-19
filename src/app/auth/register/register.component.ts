@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/shared/services/auth.service';
 declare var $ : any;
 @Component({
   selector: 'app-register',
@@ -9,9 +11,11 @@ declare var $ : any;
 })
 export class RegisterComponent implements OnInit {
   registForm: FormGroup;
+  private subscription: Subscription = new Subscription();
   constructor(
     private _formBuilder: FormBuilder,
-    private router : Router
+    private router : Router,
+    public _authSrv: AuthService
     ) {
       this.registForm = this._formBuilder.group({
         nickname: this._formBuilder.control({value:'', disabled: false}, [Validators.required]),
@@ -110,6 +114,23 @@ export class RegisterComponent implements OnInit {
     });*/
   }
   doRegist() {
-    this.router.navigate(['/auth/login']);
+    let credentials = {
+      nickname : this.registForm.controls['nickname'].value,
+      email : this.registForm.controls['email'].value,
+      name : this.registForm.controls['name'].value,
+      lastName : this.registForm.controls['lastName'].value,
+      role: 'jugador',
+      password: this.registForm.controls['password'].value
+    }
+    console.log(credentials);
+    this.subscription.add(this._authSrv.register(credentials).subscribe(
+      response => {
+        console.log(response);
+        this.router.navigate(['/auth/login']);
+      },
+      error => {
+        console.log(error);
+      })
+    );
   }
 }

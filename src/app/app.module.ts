@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -22,6 +22,9 @@ import {MatInputModule} from '@angular/material/input';
 import { CategoryComponent } from './components/category/category.component';
 import { ActivityComponent } from './components/activity/activity.component';
 import { ActivatePasswordComponent } from './auth/activate-password/activate-password.component';
+import { AuthService } from 'src/shared/services/auth.service';
+import { AppInterceptor } from './app.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,9 +51,10 @@ import { ActivatePasswordComponent } from './auth/activate-password/activate-pas
     MatMenuModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
