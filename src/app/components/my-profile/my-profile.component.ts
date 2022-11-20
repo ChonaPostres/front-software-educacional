@@ -64,7 +64,12 @@ export class MyProfileComponent implements OnInit {
     this.user.lastName = this.profileForm.controls['lastName'].value;
     this.subscribe.add(this.userSrv.update(this.profileForm.controls['email'].value, this.user).subscribe(
       response => {
-        console.log(response);
+        this.snack.open('Los cambios se guardaron con éxito!!', 'X', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 5 * 1000,
+          panelClass: ['green-snackbar']
+        });
       },
       error => {
         this.snack.open(error.error.error.message, 'X', {
