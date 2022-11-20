@@ -36,8 +36,8 @@
         <button mat-icon-button class="example-icon" ngbDropdownToggle>
             <mat-icon>person</mat-icon>
             <div ngbDropdownMenu>
-                <div ngbDropdownItem disabled="">Apodo</div>
-                <div ngbDropdownItem disabled="">Nombre Apellido</div>
+                <div ngbDropdownItem disabled="">{{perfil.nickname}}</div>
+                <div ngbDropdownItem disabled="">{{perfil.name}} {{perfil.lastName}}</div>
                 <div class="dropdown-divider"></div>
                 <button ngbDropdownItem (click)="goMyProfile()">Mi Perfil</button>
                 <div class="dropdown-divider"></div>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/shared/services/auth.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 declare var $ : any;
 @Component({
   selector: 'app-register',
@@ -15,7 +16,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private router : Router,
-    public _authSrv: AuthService
+    public _authSrv: AuthService,
+    private snack: MatSnackBar
     ) {
       this.registForm = this._formBuilder.group({
         nickname: this._formBuilder.control({value:'', disabled: false}, [Validators.required]),
@@ -127,9 +129,20 @@ export class RegisterComponent implements OnInit {
       response => {
         console.log(response);
         this.router.navigate(['/auth/login']);
+        this.snack.open('Se registró con éxito!!', 'X', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 5 * 1000,
+          panelClass: ['green-snackbar']
+        });
       },
       error => {
-        console.log(error);
+        this.snack.open(error.error.error.message, 'X', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 5 * 1000,
+          panelClass: ['red-snackbar']
+        });
       })
     );
   }

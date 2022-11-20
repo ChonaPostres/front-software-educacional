@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/shared/services/auth.service';
 import { Subscription } from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 declare var $ : any;
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _authSrv : AuthService,
-    private router : Router
+    private router : Router,
+    private snack: MatSnackBar
   ) { 
     this.loginForm = this._formBuilder.group({
       email: this._formBuilder.control({value: '', disabled: false}, [Validators.required]),
@@ -41,17 +43,17 @@ export class LoginComponent implements OnInit {
     this.loginForm.disable();
     this.subscription.add(this._authSrv.signIn(credentials).subscribe(
       response => {
-        console.log(response);
         this.router.navigate(['components/home']);
       },
       error => {
-        console.log(error);
+        this.snack.open(error.error.error.message, 'X', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 5 * 1000,
+          panelClass: ['red-snackbar']
+        });
       }
     ));
-    
       this.loginForm.enable();
-    
-    
-    
   }
 }

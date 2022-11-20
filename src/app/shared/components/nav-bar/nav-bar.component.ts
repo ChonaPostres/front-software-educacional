@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
+  public perfil =  JSON.parse(localStorage.getItem('profile')!);
   navLinks = [
     { title: 'Home', router: '/components/home', fragment: 'one'},
     { title: 'Ranking', router: '/components/ranking', fragment: 'two'}
@@ -25,6 +26,7 @@ export class NavBarComponent implements OnInit {
     this.router.navigate(['components/my-profile']);
   }
   disconnect() {
+    localStorage.removeItem('profile');
     this.router.navigate(['auth/login']);
   }
 

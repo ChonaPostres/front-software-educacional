@@ -24,6 +24,8 @@ import { ActivityComponent } from './components/activity/activity.component';
 import { ActivatePasswordComponent } from './auth/activate-password/activate-password.component';
 import { AuthService } from 'src/shared/services/auth.service';
 import { AppInterceptor } from './app.interceptor';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { AppInterceptor } from './app.interceptor';
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }],
   bootstrap: [AppComponent]

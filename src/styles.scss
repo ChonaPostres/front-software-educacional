@@ -3,5 +3,18 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
+.green-snackbar {
+    background: rgb(117, 236, 161);
+    color: white;
+}
+.red-snackbar {
+    background: #ec655b;
+    color: white;
+}
+.blue-snackbar {
+    background: #2196F3;
+    color: white;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

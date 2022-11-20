@@ -1,6 +1,13 @@
 <app-nav-bar></app-nav-bar>
 <div class="container-fluid">
-  <div class="row my-4">
+  <div class="flex flex-col flex-auto" *ngIf="loading">
+    <div class="showLoading">
+        <mat-progress-spinner [diameter]="60" [mode]="'indeterminate'">
+        </mat-progress-spinner>
+        <div class="mt-2 font-medium">Procesando...</div>
+    </div>
+  </div>
+  <div class="row my-4" *ngIf="!loading">
     <div class="col col-md-6">
       <div class="card" style="max-width: 38rem;">
         <div class="row g-0">
@@ -9,9 +16,10 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">Apodo</h5>
-              <p class="card-text">Puntos: 999.999.999</p>
-              <p class="card-text"><small class="text-muted">Ultima sesion 19/10/1983</small></p>
+              <h5 class="card-title">{{perfil.nickname}}</h5>
+              <h5 class="card-title">{{perfil.email}}</h5>
+              <p class="card-text">Puntos: {{perfil.score}}</p>
+              <!--<p class="card-text"><small class="text-muted">Ultima sesion 19/10/1983</small></p>-->
             </div>
           </div>
         </div>
