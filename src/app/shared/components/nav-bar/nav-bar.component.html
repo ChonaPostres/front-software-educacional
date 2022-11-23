@@ -30,6 +30,11 @@
         <mat-icon>star</mat-icon>
         <span>Ranking</span>
       </button>
+
+      <button mat-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="goUsers()" *ngIf="haveAcces()">
+        <mat-icon>group</mat-icon>
+        <span>Usuarios</span>
+      </button>
       
       <span class="example-spacer"></span>
       <div ngbDropdown>

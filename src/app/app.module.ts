@@ -26,6 +26,11 @@ import { AuthService } from 'src/shared/services/auth.service';
 import { AppInterceptor } from './app.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { UsersComponent } from './components/users/users.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ForgotPasswordComponent,
     CategoryComponent,
     ActivityComponent,
-    ActivatePasswordComponent
+    ActivatePasswordComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +62,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatInputModule,
     HttpClientModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatDividerModule,
   ],
   providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }],
   bootstrap: [AppComponent]

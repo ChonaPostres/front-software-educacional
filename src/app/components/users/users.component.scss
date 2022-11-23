@@ -1,0 +1,81 @@
+table.dialogTable {
+    border-collapse: collapse;
+    border-bottom: 1px solid #ffa600;
+  }
+  
+  .dialogTable th {
+    /* row border */
+    border-bottom: 1px solid #ffa600;
+  }
+  
+  .dialogTable td.mat-cell {
+    /* row padding */
+    padding: 10px 10px;
+   /* border: none;*/
+   border-left: 1px solid #ffa600;
+    border-right: 1px solid #ffa600;
+  }
+  
+  .dialogTable tr.mat-row {
+    /* row border */
+    border: 1px solid #ffa600;
+  
+  }
+  
+  
+  .bestTable {
+    border-collapse: collapse;
+    border-bottom: 1px solid #AFB6FF;
+  }
+  
+  .bestTable td.borders {
+    /* row border */
+    border-top: 1px solid #AFB6FF;
+  
+  }
+  
+  .bestTable tr.hover-effect:hover { 
+    background-color: #CACEF0;
+  
+  }
+  
+  .bestTable td, .bestTable th {
+      padding:5px;
+  }
+  
+  .bestTable td{
+      color:#64748b
+  }
+  
+  .bestTable {
+      font-size: 0.800rem !important;
+      letter-spacing: -0.025em !important;
+      position: relative;
+  }
+  
+  th {
+      position: sticky;
+      top: 0; /* Don't forget this, required for the stickiness */
+      background-color: white;
+      border-collapse: collapse;
+      border-bottom:  1px solid #AFB6FF;
+  }
+  
+  @media (max-width: 640px) {
+    .headerTd {
+          background-color: #CACEF0;
+          left: 0;
+          z-index: 9991 !important;
+  
+      }
+  
+      .headerTd2 {
+          background-color: #CACEF0 !important;
+          left: 0 !important;
+          position: sticky !important;
+          z-index: 9990 !important;
+      }
+      .bestTable {
+          font-size: 0.700rem !important;
+      }
+  }

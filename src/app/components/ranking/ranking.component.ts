@@ -26,14 +26,14 @@ export class RankingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.users);
+    console.log(this.perfil);
     this.find();
   }
   private find() {
-    this.subscribe.add(this.userSrv.find().subscribe(
+    this.subscribe.add(this.userSrv.findGamers().subscribe(
       response => {
         this.users = response;
-        console.log(this.users);
+        this.ordenarRankingUsers();
         this.loading = false;
       },
       error => {
@@ -50,5 +50,18 @@ export class RankingComponent implements OnInit {
   goHome() {
     this.router.navigate(['/components/home']);
   }
-
+  /**
+   * Ordenar usuario por puntos
+   */
+  ordenarRankingUsers() {
+    this.users.sort( (a, b) => {
+      if (a.score == b.score) {
+        return 0;
+      }
+      if (a.score > b.score) {
+        return -1;
+      }
+      return 1;
+    });
+  }
 }

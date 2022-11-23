@@ -25,9 +25,15 @@ export class NavBarComponent implements OnInit {
   goMyProfile() {
     this.router.navigate(['components/my-profile']);
   }
+  goUsers() {
+    this.router.navigate(['components/users']);
+  }
   disconnect() {
     localStorage.removeItem('profile');
     this.router.navigate(['auth/login']);
+  }
+  haveAcces() {
+    return this.perfil.role.slug == 'administrador' ? true : false;
   }
 
 }

@@ -10,6 +10,7 @@ import { CategoryComponent } from './components/category/category.component';
 import { HomeComponent } from './components/home/home.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { RankingComponent } from './components/ranking/ranking.component';
+import { UsersComponent } from './components/users/users.component';
 
 const appRoutes:Routes=[
   {path:'', redirectTo: 'auth/login', pathMatch: 'full'},
@@ -19,6 +20,7 @@ const appRoutes:Routes=[
   {path:'components/home', component:HomeComponent},
   {path:'components/ranking', component:RankingComponent},
   {path:'components/my-profile', component:MyProfileComponent},
+  {path:'components/users', component:UsersComponent},
   {path:'components/category/:id', component:CategoryComponent},
   {path:'components/activity/:id', component:ActivityComponent},
   {path:'auth/activate-password', component:ActivatePasswordComponent}

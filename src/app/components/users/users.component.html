@@ -1,0 +1,145 @@
+<app-nav-bar></app-nav-bar>
+<div class="content-layout">
+    
+    <div class="flex flex-col flex-auto"  *ngIf="loading"> 
+        <div class="showLoading">
+          <mat-progress-spinner
+              [diameter]="60"
+              [mode]="'indeterminate'">
+          </mat-progress-spinner>
+          <div class="mt-2 font-medium">Procesando...</div>
+        </div>
+    </div>
+
+    <div class="main" *ngIf="!loading">
+        <div class="content" *ngIf="users !== null">
+            <div class="animated-box">
+                <div class="animated-box-content">
+                    <div class="main-actions mb-2">
+                        <!-- Search -->
+                        <form [formGroup]="filterForm" class="search flex flex-row">
+                            <div class="flex flex-col w-full">
+                                <!--Filtro por Nombre-->
+                                <mat-form-field class="flex-auto gt-xs:pr-3">
+                                    <input matInput autocomplete="off"
+                                        formControlName="fullname" [placeholder]="'Nombre'">
+                                </mat-form-field>
+
+                                <!--Filto por Perfil-->
+                                <mat-form-field class="flex-auto gt-xs:pr-3">
+                                    <mat-select [placeholder]="'Perfil'" formControlName="role" >
+                                        <mat-option value="">Perfil</mat-option>
+                                        <mat-option [value]="role.slug" *ngFor="let role of roles">{{ role.title}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                                <!--Filtro por Estado-->
+                                <mat-form-field class="flex-auto gt-xs:pr-3">
+                                    <mat-select formControlName="status" placeholder="Estado">
+                                        <mat-option *ngFor="let sta of status" [value]="sta.number">{{sta.name}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="flex flex-col w-full">
+                                <div class="flex-auto gt-xs:pr-3">
+                                    <button class="add-contact"
+                                            mat-flat-button
+                                            [color]="'warn'"
+                                            (click)="changeFilter()">
+                                        <mat-icon>search</mat-icon>
+                                            Buscar 
+                                    </button>
+                                </div>
+                                <div class="flex-auto gt-xs:pr-3">
+                                    <button class="add-contact"
+                                            mat-flat-button
+                                            [color]="'primary'"
+                                            (click)="add()">
+                                        <mat-icon>add</mat-icon>
+                                            Agregar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="flex flex-col flex-auto"  *ngIf="loadingSrv"> 
+                        <div class="showLoading">
+                        <mat-progress-spinner
+                            [diameter]="60"
+                            [mode]="'indeterminate'">
+                        </mat-progress-spinner>
+                        <div class="mt-2 font-medium">Procesando...</div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="!loadingSrv">
+                        <div style="box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); border-radius: 15px; max-height: 56vh; overflow: auto" class="mb-4">
+                            <table mat-table class="table-light bestTable" style="width:100%;">
+                                <thead>
+                                  <tr>
+                                    <th style="text-align: center" [ngClass]="'headerTd'"><span class="xs:hidden sm:hidden text-primary">Nombre</span></th>
+                                    <th style="text-align: center"><span class="xs:hidden sm:hidden text-primary">Email</span></th>
+                                    <th style="text-align: center"><span class="xs:hidden sm:hidden text-primary">Estado</span></th>
+                                    <th style="text-align: center"><span class="xs:hidden sm:hidden text-primary">Perfil</span></th>
+                                    <th style="text-align: center"><span class="xs:hidden sm:hidden text-primary">Ver</span></th>
+                                    <th style="text-align: center"><span class="xs:hidden sm:hidden text-primary">Editar</span></th>
+                                    <th style="text-align: center"><span class="xs:hidden sm:hidden text-primary">Eliminar</span></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let user of users" class="odd:bg-white even:bg-slate-100 hover-effect">
+                                    <!--Nombre-->
+                                    <td style="text-align: left" [ngClass]="'borders headerTd2'">
+                                        {{user.name}} {{user.lastName}}
+                                    </td>
+                                    <!--Email-->
+                                    <td style="text-align: center" class="borders">
+                                        {{user.email}}
+                                    </td>
+                                    <!--Estado-->
+                                    <td *ngIf="user.status == -1" style="text-align: center" class="borders">
+                                        Eliminado
+                                    </td>
+                                    <td *ngIf="user.status == 1" style="text-align: center" class="borders">
+                                        Activo
+                                    </td>
+                                    <td *ngIf="user.status == 2" style="text-align: center" class="borders">
+                                        Bloqueado
+                                    </td>
+                                    <!--Perfil-->
+                                    <td style="text-align: center" class="borders">
+                                        {{user.role}}
+                                    </td>
+                                    <!--Ver Detalle-->
+                                    <td style="text-align: center" class="borders">
+                                        <a routerLink="//admin/users/user/view/{{user.id}}">
+                                            <div class="text-2xl font-semibold leading-tight">
+                                                <mat-icon>visibility</mat-icon>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <!--Editar-->
+                                    <td style="text-align: center" class="borders">
+                                        <a routerLink="/admin/users/user/edit/{{user.id}}">
+                                            <div class="text-2xl font-semibold leading-tight">
+                                                <mat-icon>edit</mat-icon>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <!--Eliminar-->
+                                    <td style="text-align: center" class="borders">
+                                        <div class="text-2xl font-semibold leading-tight">
+                                            <mat-icon (click)="remove(user.id)">delete</mat-icon>
+                                        </div>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
