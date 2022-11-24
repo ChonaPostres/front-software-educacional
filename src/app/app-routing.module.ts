@@ -10,6 +10,9 @@ import { CategoryComponent } from './components/category/category.component';
 import { HomeComponent } from './components/home/home.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { RankingComponent } from './components/ranking/ranking.component';
+import { UsersAddComponent } from './components/users/users-add/users-add.component';
+import { UsersDetailComponent } from './components/users/users-detail/users-detail.component';
+import { UsersEditComponent } from './components/users/users-edit/users-edit.component';
 import { UsersComponent } from './components/users/users.component';
 
 const appRoutes:Routes=[
@@ -21,6 +24,9 @@ const appRoutes:Routes=[
   {path:'components/ranking', component:RankingComponent},
   {path:'components/my-profile', component:MyProfileComponent},
   {path:'components/users', component:UsersComponent},
+  {path:'components/users/add', component:UsersAddComponent},
+  {path:'components/users/edit/:email', component:UsersEditComponent},
+  {path:'components/users/view/:email', component:UsersDetailComponent},
   {path:'components/category/:id', component:CategoryComponent},
   {path:'components/activity/:id', component:ActivityComponent},
   {path:'auth/activate-password', component:ActivatePasswordComponent}

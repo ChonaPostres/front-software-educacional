@@ -88,6 +88,31 @@ export class UserService extends AbstractHttpService {
         }
         return filter;
     }
+    configurateEmailNicknameFilters(params : any) {
+        var filter = "";
+        let arrParams = [];
+        console.log(params);
+        if (params.email !== ''){
+          arrParams.push({ field: 'email', value : { "like": params.email, options: "i" }});
+        }
+
+        if (params.nickname !== ''){
+            arrParams.push({ field: 'nickname', value : { "like": params.nickname, options: "i" }});
+          }
+    
+        for (let i = 0; i < arrParams.length; i ++){
+          if (arrParams.length > 1 && i < arrParams.length -1){
+            if (arrParams[i].field === 'email' || arrParams[i].field === 'nickname'){
+              filter =  filter + '{"' + arrParams[i].field + '": ' + JSON.stringify(arrParams[i].value) + '},';
+            } 
+          } else {
+            if (arrParams[i].field === 'email' || arrParams[i].field === 'nickname'){
+              filter =  filter + '{ "' + arrParams[i].field + '": ' + JSON.stringify(arrParams[i].value) + '}';
+            } 
+          }
+        }
+        return filter;
+    }
     findWithParams(params : any) {
         const httpOptions = {
           headers: new HttpHeaders({
@@ -97,19 +122,33 @@ export class UserService extends AbstractHttpService {
         let filter = "{";
         let filter2 = this.configureFilters(params);
         let filter3 = this.configureFullnameFilters(params);
+        let filter4 = this.configurateEmailNicknameFilters(params);
     
-        if (filter2 === "" && filter3 === ""){
+        if (filter2 === "" && filter3 === "" && filter4 === ""){
           filter = filter + '}';
         }
-        if (filter2 !== "" && filter3 === ""){
+        if (filter2 !== "" && filter3 === "" && filter4 === ""){
             filter = filter + ' "where": { "and": [ {' + filter2 + '} ] }}';
         }
-        if (filter2 === "" && filter3 !== ""){
+        if (filter2 === "" && filter3 !== "" && filter4 === ""){
           filter = filter + ' "where": { "and": [ {"or": [' + filter3 + ']} ]}}';
         }
-        if (filter2 !== "" && filter3 !== ""){
+        if (filter2 !== "" && filter3 !== "" && filter4 === ""){
             filter = filter + ' "where": { "and": [ {' + filter2 + '}, { "or": [' + filter3 + '] } ] }}';
         }
+        if (filter2 === "" && filter3 === "" && filter4 !== ""){
+            filter = filter + ' "where": { "and": [ ' + filter4 + ' ]}}';
+        }
+        if (filter2 !== "" && filter3 === "" && filter4 !== ""){
+            filter = filter + ' "where": { "and": [ {' + filter2 + '}, ' + filter4 + ' ] }}';
+        }
+        if (filter2 === "" && filter3 !== "" && filter4 !== ""){
+            filter = filter + ' "where": { "and": [ ' + filter4 + ', { "or": [' + filter3 + '] } ] }}';
+        }
+        if (filter2 !== "" && filter3 !== "" && filter4 !== ""){
+            filter = filter + ' "where": { "and": [ {' + filter2 + '}, ' + filter4 + ', { "or": [' + filter3 + '] } ] }}';
+        }
+
         return this.http
           .get<any>(
             this.apiUrl + '/users?filter=' + encodeURIComponent(filter),
@@ -121,15 +160,19 @@ export class UserService extends AbstractHttpService {
             })
           );
       }
-    findGamers() {
+      findGamers() {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'
             })
         };
+        const filter =
+            '{ "where" : { "and": [{"role": "jugador"}, {"status": {"$ne": -1}}] }}';
         return this.http
             .get<any>(
-                this.apiUrl + '/users/gamers', httpOptions)
+                this.apiUrl + '/users?filter=' + encodeURIComponent(filter),
+                httpOptions
+            )
             .pipe(
                 map(response => {
                     return response;

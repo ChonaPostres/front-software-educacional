@@ -26,11 +26,15 @@ import { AuthService } from 'src/shared/services/auth.service';
 import { AppInterceptor } from './app.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { UsersComponent } from './components/users/users.component';
+import { UserDeleteDialog, UsersComponent } from './components/users/users.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
+import {MatDialogModule} from '@angular/material/dialog';
+import { UsersAddComponent } from './components/users/users-add/users-add.component';
+import { UsersDetailComponent } from './components/users/users-detail/users-detail.component';
+import { UsersEditComponent } from './components/users/users-edit/users-edit.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,11 @@ import { MatDividerModule } from '@angular/material/divider';
     CategoryComponent,
     ActivityComponent,
     ActivatePasswordComponent,
-    UsersComponent
+    UsersComponent,
+    UserDeleteDialog,
+    UsersAddComponent,
+    UsersDetailComponent,
+    UsersEditComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +75,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatRadioModule,
     MatCheckboxModule,
     MatDividerModule,
+    MatDialogModule
   ],
   providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }],
   bootstrap: [AppComponent]
