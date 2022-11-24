@@ -25,10 +25,23 @@
                                         formControlName="fullname" [placeholder]="'Nombre'">
                                 </mat-form-field>
 
+                                <!--Filtro por Email-->
+                                <mat-form-field class="flex-auto gt-xs:pr-3">
+                                    <input matInput autocomplete="off"
+                                        formControlName="email" [placeholder]="'Email'">
+                                </mat-form-field>
+
+                                <!--Filtro por Apodo-->
+                                <mat-form-field class="flex-auto gt-xs:pr-3">
+                                    <input matInput autocomplete="off"
+                                        formControlName="nickname" [placeholder]="'Apodo'">
+                                </mat-form-field>
+                            </div>
+                            <div class="flex flex-col w-full">
                                 <!--Filto por Perfil-->
                                 <mat-form-field class="flex-auto gt-xs:pr-3">
                                     <mat-select [placeholder]="'Perfil'" formControlName="role" >
-                                        <mat-option value="">Perfil</mat-option>
+                                        <mat-option value="">Todos</mat-option>
                                         <mat-option [value]="role.slug" *ngFor="let role of roles">{{ role.title}}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
@@ -36,6 +49,7 @@
                                 <!--Filtro por Estado-->
                                 <mat-form-field class="flex-auto gt-xs:pr-3">
                                     <mat-select formControlName="status" placeholder="Estado">
+                                        <mat-option value="">Todos</mat-option>
                                         <mat-option *ngFor="let sta of status" [value]="sta.number">{{sta.name}}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
@@ -80,6 +94,7 @@
                                   <tr>
                                     <th style="text-align: center" [ngClass]="'headerTd'"><span class="xs:hidden sm:hidden text-primary">Nombre</span></th>
                                     <th style="text-align: center"><span class="xs:hidden sm:hidden text-primary">Email</span></th>
+                                    <th style="text-align: center"><span class="xs:hidden sm:hidden text-primary">Apodo</span></th>
                                     <th style="text-align: center"><span class="xs:hidden sm:hidden text-primary">Estado</span></th>
                                     <th style="text-align: center"><span class="xs:hidden sm:hidden text-primary">Perfil</span></th>
                                     <th style="text-align: center"><span class="xs:hidden sm:hidden text-primary">Ver</span></th>
@@ -97,6 +112,10 @@
                                     <td style="text-align: center" class="borders">
                                         {{user.email}}
                                     </td>
+                                    <!--Apodo-->
+                                    <td style="text-align: center" class="borders">
+                                        {{user.nickname}}
+                                    </td>
                                     <!--Estado-->
                                     <td *ngIf="user.status == -1" style="text-align: center" class="borders">
                                         Eliminado
@@ -113,7 +132,7 @@
                                     </td>
                                     <!--Ver Detalle-->
                                     <td style="text-align: center" class="borders">
-                                        <a routerLink="//admin/users/user/view/{{user.id}}">
+                                        <a routerLink="/components/users/view/{{user.email}}">
                                             <div class="text-2xl font-semibold leading-tight">
                                                 <mat-icon>visibility</mat-icon>
                                             </div>
@@ -121,7 +140,7 @@
                                     </td>
                                     <!--Editar-->
                                     <td style="text-align: center" class="borders">
-                                        <a routerLink="/admin/users/user/edit/{{user.id}}">
+                                        <a routerLink="/components/users/edit/{{user.email}}">
                                             <div class="text-2xl font-semibold leading-tight">
                                                 <mat-icon>edit</mat-icon>
                                             </div>
@@ -130,7 +149,7 @@
                                     <!--Eliminar-->
                                     <td style="text-align: center" class="borders">
                                         <div class="text-2xl font-semibold leading-tight">
-                                            <mat-icon (click)="remove(user.id)">delete</mat-icon>
+                                            <mat-icon (click)="remove(user.email)">delete</mat-icon>
                                         </div>
                                     </td>
                                   </tr>

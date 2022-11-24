@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { User } from 'src/shared/model/user';
 import { RoleService } from 'src/shared/services/role.service';
 import { UserService } from 'src/shared/services/user.service';
 import { UtilService } from 'src/shared/services/util.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-users',
@@ -25,6 +26,8 @@ export class UsersComponent implements OnInit {
   public filterForm: FormGroup;
   private parameters = {
     fullname: '',
+    email: '',
+    nickname: '',
     role: '',
     status: ''
   }
@@ -34,11 +37,14 @@ export class UsersComponent implements OnInit {
     private snack: MatSnackBar,
     private roleSrv: RoleService,
     private utilSrv : UtilService,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public dialog: MatDialog
   ) {
     this.filterForm = this.formBuilder.group({
       role   : [''],
       fullname : [''],
+      nickname : [''],
+      email : [''],
       status: ['']
     });
   }
@@ -54,7 +60,12 @@ export class UsersComponent implements OnInit {
         this.loadingSrv = false;
       },
       error => {
-
+        this.snack.open(error.error.error.message, 'X', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 5 * 1000,
+          panelClass: ['red-snackbar']
+        });
       }
     ))
   }
@@ -66,6 +77,12 @@ export class UsersComponent implements OnInit {
         },
         error => {
           console.log(error);
+          this.snack.open(error.error.error.message, 'X', {
+            horizontalPosition: 'right',
+            verticalPosition: 'top',
+            duration: 5 * 1000,
+            panelClass: ['red-snackbar']
+          });
         }
     ));
   }
@@ -75,17 +92,71 @@ export class UsersComponent implements OnInit {
     this.status.push({name: "Bloqueado", number: 2})
     this.find();
   }
-  remove(id : string) {
-
-  }
   add() {
+    this.router.navigate(['/components/users/add']);
+  }
+  remove(id : string): void {
+    const dialogRef = this.dialog.open(UserDeleteDialog, {
+      data:{
+        id: id
+      },
+      autoFocus: false,
+      maxHeight: "90vh", //you can adjust the value as per your view
+    });
 
+    dialogRef.afterClosed().subscribe((result) => {
+      this.find();
+      console.log("The dialog was closed");
+    });
   }
   changeFilter() {
-    this.parameters.fullname = this.filterForm.controls['fullname'].value
-    this.parameters.role = this.filterForm.controls['role'].value
-    this.parameters.status = this.filterForm.controls['status'].value
+    this.parameters.fullname = this.filterForm.controls['fullname'].value;
+    this.parameters.email = this.filterForm.controls['email'].value;
+    this.parameters.nickname = this.filterForm.controls['nickname'].value;
+    this.parameters.role = this.filterForm.controls['role'].value;
+    this.parameters.status = this.filterForm.controls['status'].value;
+    console.log(this.parameters);
     this.loadingSrv = true;
     this.find();
+  }
+}
+@Component({
+  selector: 'user-delete.dialog',
+  templateUrl: 'user-delete.dialog.html',
+  providers: [UserService]
+})
+export class UserDeleteDialog {
+  private subscription: Subscription = new Subscription();
+  constructor(
+    public dialogRef: MatDialogRef<UserDeleteDialog>,
+    private snack: MatSnackBar,
+    private userSrv : UserService,
+    @Inject(MAT_DIALOG_DATA)
+    public data: { id: string }
+    ) {}
+  onCloseClick(): void {
+    this.dialogRef.close();
+  }
+  deleteUser(id: string) {
+    this.subscription.add(this.userSrv.remove(id).subscribe(
+      response => {
+        console.log("Eliminado");
+        this.snack.open('Se elimino el usuario!!', 'X', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 5 * 1000,
+          panelClass: ['green-snackbar']
+        });
+        this.dialogRef.close();
+      },
+      error => {
+        this.snack.open(error.error.error.message, 'X', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 5 * 1000,
+          panelClass: ['red-snackbar']
+        });
+      }
+    ));
   }
 }
