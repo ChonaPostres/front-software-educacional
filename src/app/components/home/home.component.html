@@ -8,13 +8,13 @@
     </div>
   </div>
   <div class="row my-4" *ngIf="!loading">
-    <div class="col col-md-6">
+    <div class="col col-sm-6">
       <div class="card" style="max-width: 38rem;">
         <div class="row g-0">
-          <div class="col-md-4">
+          <div class="col-sm-4">
             <img src="../../../assets/images/149071.png" class="img-fluid rounded-start" alt="...">
           </div>
-          <div class="col-md-8">
+          <div class="col-sm-8">
             <div class="card-body">
               <h5 class="card-title">{{perfil.nickname}}</h5>
               <h5 class="card-title">{{perfil.email}}</h5>
@@ -27,9 +27,9 @@
     </div>
   </div>
   <h2 class="mt-4">Categorias:</h2>
-  <div class="row my-2 g-4 ">
-    <div class="col col-4" *ngFor="let category of categories">
-      <button type="button" class="btn btn-lg text-white col-12" style="background-color: blueviolet" (click)="goCategory(category.id)">{{category.title}}</button>
+  <div class="row  row-cols-1 row-cols-md-3 my-2 g-4 ">
+    <div class="col col-sm-4" *ngFor="let category of categories">
+      <button type="button" class="btn btn-lg text-white col-12" style="background-color: royalblue" (click)="goCategory(category.id)">{{category.title}}</button>
     </div>
   </div>
 </div>

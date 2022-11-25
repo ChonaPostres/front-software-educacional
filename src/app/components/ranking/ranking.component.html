@@ -8,32 +8,32 @@
         <div class="mt-2 font-medium">Procesando...</div>
     </div>
   </div>
-  <div class="row my-4" *ngIf="!loading">
-    <div class="col col-md-8">
-      <div class="card">
-        <div class="card-header text-white" style="background-color: blueviolet">
-          TOP 10
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" *ngFor="let user of users; index as i">{{i + 1}}) {{user.nickname}}</li>
-        </ul>
-      </div>
-    </div>
+  <div class="row row-cols-1 row-cols-md-2 my-2 g-4" *ngIf="!loading">
     <div class="col col-md-4">
       <div class="card" style="max-width: 38rem;">
         <div class="row g-0">
-          <div class="col-md-4">
+          <div class="col-sm-4">
             <img src="../../../assets/images/149071.png" class="img-fluid rounded-start" alt="...">
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">{{perfil.nickname}}</h5>
-              <h5 class="card-title">{{perfil.email}}</h5>
+              <p class="card-title">{{perfil.nickname}}</p>
+              <p class="card-text">{{perfil.email}}</p>
               <p class="card-text">Puntos: {{perfil.score}}</p>
               <!--<p class="card-text"><small class="text-muted">Ultima sesion 19/10/1983</small></p>-->
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="col col-sm-8 align-content-end">
+      <div class="card">
+        <div class="card-header text-white" style="background-color: royalblue">
+          TOP 10
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let user of users; index as i">{{i + 1}}) {{user.nickname}}</li>
+        </ul>
       </div>
     </div>
   </div>
