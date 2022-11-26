@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
+  @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
   public perfil =  JSON.parse(localStorage.getItem('profile')!);
   navLinks = [
     { title: 'Home', router: '/components/home', fragment: 'one'},
@@ -34,6 +35,9 @@ export class NavBarComponent implements OnInit {
   }
   haveAcces() {
     return this.perfil.role.slug == 'administrador' ? true : false;
+  }
+  toggleSidebar() {
+    this.toggleSidebarForMe.emit();
   }
 
 }

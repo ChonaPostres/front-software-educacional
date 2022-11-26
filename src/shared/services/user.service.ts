@@ -91,7 +91,6 @@ export class UserService extends AbstractHttpService {
     configurateEmailNicknameFilters(params : any) {
         var filter = "";
         let arrParams = [];
-        console.log(params);
         if (params.email !== ''){
           arrParams.push({ field: 'email', value : { "like": params.email, options: "i" }});
         }

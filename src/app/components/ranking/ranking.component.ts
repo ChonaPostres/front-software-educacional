@@ -18,6 +18,7 @@ export class RankingComponent implements OnInit {
   public users!: User[];
   private subscribe: Subscription = new Subscription();
   public loading: boolean = true;
+  public sideBarOpen = true;
   constructor(
     private _formBuilder: FormBuilder,
     private userSrv : UserService,
@@ -63,5 +64,8 @@ export class RankingComponent implements OnInit {
       }
       return 1;
     });
+  }
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
   }
 }

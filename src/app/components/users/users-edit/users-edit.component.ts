@@ -23,6 +23,7 @@ export class UsersEditComponent implements OnInit {
   private code!: string;
   public user!: User;
   public status: any[] = [];
+  public sideBarOpen = true;
   constructor(
     private _formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -123,5 +124,7 @@ export class UsersEditComponent implements OnInit {
       }
     ));
   }
-
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
+  }
 }

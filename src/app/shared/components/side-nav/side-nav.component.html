@@ -1,0 +1,17 @@
+<mat-nav-list>
+    <div class="home py-4">
+      Menu
+    </div>
+    <mat-divider></mat-divider>
+  
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/components/home">
+      <mat-icon>home</mat-icon> Home
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/components/ranking">
+      <mat-icon>star</mat-icon> Ranking
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/components/users" *ngIf="perfil.role.slug == 'administrador'">
+        <mat-icon>group</mat-icon> Usuarios
+    </a>
+</mat-nav-list>
+  

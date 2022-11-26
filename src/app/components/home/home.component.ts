@@ -13,6 +13,7 @@ import { UserService } from 'src/shared/services/user.service';
 })
 export class HomeComponent implements OnInit {
   categories:any = Categories;
+  sideBarOpen = true;
   public perfil =  JSON.parse(localStorage.getItem('profile')!);
   private subscribe: Subscription = new Subscription();
   public loading: boolean = false;
@@ -35,6 +36,9 @@ export class HomeComponent implements OnInit {
   }
   goCategory(id: string) {
     this.router.navigate(['/components/category/'+id]);
+  }
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
   }
 
 }

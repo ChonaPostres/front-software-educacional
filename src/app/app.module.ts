@@ -35,6 +35,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { UsersAddComponent } from './components/users/users-add/users-add.component';
 import { UsersDetailComponent } from './components/users/users-detail/users-detail.component';
 import { UsersEditComponent } from './components/users/users-edit/users-edit.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { SideNavComponent } from './shared/components/side-nav/side-nav.component';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,8 @@ import { UsersEditComponent } from './components/users/users-edit/users-edit.com
     UserDeleteDialog,
     UsersAddComponent,
     UsersDetailComponent,
-    UsersEditComponent
+    UsersEditComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +79,9 @@ import { UsersEditComponent } from './components/users/users-edit/users-edit.com
     MatRadioModule,
     MatCheckboxModule,
     MatDividerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }],
   bootstrap: [AppComponent]

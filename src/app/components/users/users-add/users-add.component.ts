@@ -18,6 +18,7 @@ export class UsersAddComponent implements OnInit {
   private subscription: Subscription = new Subscription();
   public roles!: Role[];
   public loading: boolean = true;
+  public sideBarOpen = true;
   constructor(
     private _formBuilder: FormBuilder,
     private router : Router,
@@ -86,6 +87,9 @@ export class UsersAddComponent implements OnInit {
         });
       })
     );
+  }
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
   }
 
 }

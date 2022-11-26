@@ -24,6 +24,7 @@ export class UsersComponent implements OnInit {
   public status: any[] = [];
   public roles!: Role[];
   public filterForm: FormGroup;
+  public sideBarOpen = true;
   private parameters = {
     fullname: '',
     email: '',
@@ -115,9 +116,11 @@ export class UsersComponent implements OnInit {
     this.parameters.nickname = this.filterForm.controls['nickname'].value;
     this.parameters.role = this.filterForm.controls['role'].value;
     this.parameters.status = this.filterForm.controls['status'].value;
-    console.log(this.parameters);
     this.loadingSrv = true;
     this.find();
+  }
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
   }
 }
 @Component({

@@ -19,6 +19,7 @@ export class MyProfileComponent implements OnInit {
   public perfil =  JSON.parse(localStorage.getItem('profile')!);
   private subscribe: Subscription = new Subscription();
   public loading: boolean = true;
+  public sideBarOpen = true;
   constructor(
     private _formBuilder: FormBuilder,
     private router : Router,
@@ -87,6 +88,9 @@ export class MyProfileComponent implements OnInit {
   }
   goRanking() {
     this.router.navigate(['/components/ranking']);
+  }
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
   }
 
 

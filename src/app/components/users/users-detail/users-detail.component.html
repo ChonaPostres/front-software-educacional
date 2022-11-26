@@ -1,57 +1,63 @@
-<head>
-
-</head>
-<div class="container-fluid">
-  <div class="row justify-content-center align-items-center vh-100" *ngIf="!loading">
-    <div class="card shadow border" style="width: 18rem;">
-      <div class="card-body">
-        <h2 class="card-title">Ver Usuario</h2>
-        <form id="registration" [formGroup]="registForm">
-          <div class="mb-4">
-              <label class="form-label">Apodo</label>
-              <input class="form-control" formControlName="nickname" placeholder="Escriba su Apodo">
-          </div>
-          <div class="mb-4">
-              <label class="form-label">Nombre</label>
-              <input class="form-control" formControlName="name" placeholder="Escriba su Nombre">
-          </div>
-          <div class="mb-4">
-              <label class="form-label">Apellido</label>
-              <input class="form-control" formControlName="lastName" placeholder="Escriba su Apellido">
-          </div>
-          <div class="mb-4">
-              <label class="form-label">Correo electrónico</label>
-              <input formControlName="email" required email type="email" class="form-control" autocomplete="new-password" placeholder="Escriba su Correo">
-          </div>
-          <div class="mb-4">
-            <label class="form-label">Perfil</label>
-            <mat-select formControlName="role" placeholder="Elegir Perfil">
-                <mat-option *ngFor="let role of roles" [value]="role.slug">{{role.title}}</mat-option>
-            </mat-select>
-          </div>
-          <div class="mb-4">
-            <label class="form-label">Estado</label>
-            <mat-select formControlName="status" placeholder="Elegir Estado">
-                <mat-option *ngFor="let sta of status" [value]="sta.number">{{sta.name}}</mat-option>
-            </mat-select>
-          </div>
-
-          <div class="col">
-              <div class="d-grid">
-                  <button type="submit" class="btn btn-primary" id="bRegistrarme" (click)="goBack()">Volver</button>
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sideBarOpen">
+    <!-- <mat-drawer mode="side" opened="true"> -->
+    <app-side-nav></app-side-nav>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-nav-bar (toggleSidebarForMe)="sideBarToggler()"></app-nav-bar>
+    <div class="container-fluid">
+      <div class="row justify-content-center align-items-center vh-100" *ngIf="!loading">
+        <div class="card shadow border" style="width: 18rem;">
+          <div class="card-body">
+            <h2 class="card-title">Ver Usuario</h2>
+            <form id="registration" [formGroup]="registForm">
+              <div class="mb-4">
+                  <label class="form-label">Apodo</label>
+                  <input class="form-control" formControlName="nickname" placeholder="Escriba su Apodo">
               </div>
+              <div class="mb-4">
+                  <label class="form-label">Nombre</label>
+                  <input class="form-control" formControlName="name" placeholder="Escriba su Nombre">
+              </div>
+              <div class="mb-4">
+                  <label class="form-label">Apellido</label>
+                  <input class="form-control" formControlName="lastName" placeholder="Escriba su Apellido">
+              </div>
+              <div class="mb-4">
+                  <label class="form-label">Correo electrónico</label>
+                  <input formControlName="email" required email type="email" class="form-control" autocomplete="new-password" placeholder="Escriba su Correo">
+              </div>
+              <div class="mb-4">
+                <label class="form-label">Perfil</label>
+                <mat-select formControlName="role" placeholder="Elegir Perfil">
+                    <mat-option *ngFor="let role of roles" [value]="role.slug">{{role.title}}</mat-option>
+                </mat-select>
+              </div>
+              <div class="mb-4">
+                <label class="form-label">Estado</label>
+                <mat-select formControlName="status" placeholder="Elegir Estado">
+                    <mat-option *ngFor="let sta of status" [value]="sta.number">{{sta.name}}</mat-option>
+                </mat-select>
+              </div>
+    
+              <div class="col">
+                  <div class="d-grid">
+                      <button type="submit" class="btn btn-primary" id="bRegistrarme" (click)="goBack()">Volver</button>
+                  </div>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="flex flex-col flex-auto"  *ngIf="loading"> 
-    <div class="showLoading">
-      <mat-progress-spinner
-          [diameter]="60"
-          [mode]="'indeterminate'">
-      </mat-progress-spinner>
-      <div class="mt-2 font-medium">Procesando...</div>
+    <div class="flex flex-col flex-auto"  *ngIf="loading"> 
+        <div class="showLoading">
+          <mat-progress-spinner
+              [diameter]="60"
+              [mode]="'indeterminate'">
+          </mat-progress-spinner>
+          <div class="mt-2 font-medium">Procesando...</div>
+        </div>
     </div>
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>

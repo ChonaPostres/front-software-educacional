@@ -1,35 +1,43 @@
-<app-nav-bar></app-nav-bar>
-<div class="container-fluid">
-  <div class="flex flex-col flex-auto" *ngIf="loading">
-    <div class="showLoading">
-        <mat-progress-spinner [diameter]="60" [mode]="'indeterminate'">
-        </mat-progress-spinner>
-        <div class="mt-2 font-medium">Procesando...</div>
-    </div>
-  </div>
-  <div class="row my-4" *ngIf="!loading">
-    <div class="col col-sm-6">
-      <div class="card" style="max-width: 38rem;">
-        <div class="row g-0">
-          <div class="col-sm-4">
-            <img src="../../../assets/images/149071.png" class="img-fluid rounded-start" alt="...">
-          </div>
-          <div class="col-sm-8">
-            <div class="card-body">
-              <h5 class="card-title">{{perfil.nickname}}</h5>
-              <h5 class="card-title">{{perfil.email}}</h5>
-              <p class="card-text">Puntos: {{perfil.score}}</p>
-              <!--<p class="card-text"><small class="text-muted">Ultima sesion 19/10/1983</small></p>-->
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sideBarOpen" color="primary">
+    <!-- <mat-drawer mode="side" opened="true"> -->
+    <app-side-nav></app-side-nav>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-nav-bar (toggleSidebarForMe)="sideBarToggler()"></app-nav-bar>
+    <div class="container-fluid">
+      <div class="flex flex-col flex-auto" *ngIf="loading">
+        <div class="showLoading">
+            <mat-progress-spinner [diameter]="60" [mode]="'indeterminate'">
+            </mat-progress-spinner>
+            <div class="mt-2 font-medium">Procesando...</div>
+        </div>
+      </div>
+      <div class="row my-4" *ngIf="!loading">
+        <div class="col col-sm-6">
+          <div class="card" style="max-width: 38rem;">
+            <div class="row g-0">
+              <div class="col-sm-4">
+                <img src="../../../assets/images/149071.png" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-sm-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{perfil.nickname}}</h5>
+                  <h5 class="card-title">{{perfil.email}}</h5>
+                  <p class="card-text">Puntos: {{perfil.score}}</p>
+                  <!--<p class="card-text"><small class="text-muted">Ultima sesion 19/10/1983</small></p>-->
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <h2 class="mt-4">Categorias:</h2>
+      <div class="row  row-cols-1 row-cols-md-3 my-2 g-4 ">
+        <div class="col col-sm-4" *ngFor="let category of categories">
+          <button type="button" class="btn btn-lg text-white col-12" style="background-color: royalblue" (click)="goCategory(category.id)">{{category.title}}</button>
+        </div>
+      </div>
     </div>
-  </div>
-  <h2 class="mt-4">Categorias:</h2>
-  <div class="row  row-cols-1 row-cols-md-3 my-2 g-4 ">
-    <div class="col col-sm-4" *ngFor="let category of categories">
-      <button type="button" class="btn btn-lg text-white col-12" style="background-color: royalblue" (click)="goCategory(category.id)">{{category.title}}</button>
-    </div>
-  </div>
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,79 +1,85 @@
-<head>
-
-</head>
-<div class="container-fluid">
-  <div class="row justify-content-center align-items-center vh-100" *ngIf="!loading">
-    <div class="card shadow border" style="width: 18rem;">
-      <div class="card-body">
-        <h2 class="card-title">Crear Usuario</h2>
-        <form id="registration" [formGroup]="registForm">
-          <div class="mb-4">
-              <label class="form-label">Apodo</label>
-              <input type="nickname" class="form-control" formControlName="nickname" placeholder="Escriba su Apodo">
-              <div *ngIf="registForm.controls['nickname'].touched && registForm.controls['nickname'].errors && registForm.controls['nickname'].errors['required']"
-                      class="text text-danger mt-1">
-                      El Apodo es requerido
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sideBarOpen">
+    <!-- <mat-drawer mode="side" opened="true"> -->
+    <app-side-nav></app-side-nav>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-nav-bar (toggleSidebarForMe)="sideBarToggler()"></app-nav-bar>
+    <div class="container-fluid">
+      <div class="row justify-content-center align-items-center vh-100" *ngIf="!loading">
+        <div class="card shadow border" style="width: 18rem;">
+          <div class="card-body">
+            <h2 class="card-title">Crear Usuario</h2>
+            <form id="registration" [formGroup]="registForm">
+              <div class="mb-4">
+                  <label class="form-label">Apodo</label>
+                  <input type="nickname" class="form-control" formControlName="nickname" placeholder="Escriba su Apodo">
+                  <div *ngIf="registForm.controls['nickname'].touched && registForm.controls['nickname'].errors && registForm.controls['nickname'].errors['required']"
+                          class="text text-danger mt-1">
+                          El Apodo es requerido
+                  </div>
               </div>
-          </div>
-          <div class="mb-4">
-              <label class="form-label">Nombre</label>
-              <input type="name" class="form-control" formControlName="name" placeholder="Escriba su Nombre">
-              <div *ngIf="registForm.controls['name'].touched && registForm.controls['name'].errors && registForm.controls['name'].errors['required']"
-                      class="text text-danger mt-1">
-                      El Nombre es requerido
+              <div class="mb-4">
+                  <label class="form-label">Nombre</label>
+                  <input type="name" class="form-control" formControlName="name" placeholder="Escriba su Nombre">
+                  <div *ngIf="registForm.controls['name'].touched && registForm.controls['name'].errors && registForm.controls['name'].errors['required']"
+                          class="text text-danger mt-1">
+                          El Nombre es requerido
+                  </div>
               </div>
-          </div>
-          <div class="mb-4">
-              <label class="form-label">Apellido</label>
-              <input type="lastName" class="form-control" formControlName="lastName" placeholder="Escriba su Apellido">
-              <div *ngIf="registForm.controls['lastName'].touched && registForm.controls['lastName'].errors && registForm.controls['lastName'].errors['required']"
-                      class="text text-danger mt-1">
-                      El Apellido es requerido
+              <div class="mb-4">
+                  <label class="form-label">Apellido</label>
+                  <input type="lastName" class="form-control" formControlName="lastName" placeholder="Escriba su Apellido">
+                  <div *ngIf="registForm.controls['lastName'].touched && registForm.controls['lastName'].errors && registForm.controls['lastName'].errors['required']"
+                          class="text text-danger mt-1">
+                          El Apellido es requerido
+                  </div>
               </div>
-          </div>
-          <div class="mb-4">
-            <label class="form-label">Perfil</label>
-            <mat-select formControlName="role" placeholder="Elegir Perfil">
-                <mat-option *ngFor="let role of roles" [value]="role.slug">{{role.title}}</mat-option>
-            </mat-select>
-          </div>
-          <div class="mb-4">
-              <label class="form-label">Correo electrónico</label>
-              <input formControlName="email" required email type="email" class="form-control" autocomplete="new-password" placeholder="Escriba su Correo">
-              <div *ngIf="registForm.controls['email'].errors && registForm.controls['email'].touched && registForm.controls['email'].errors['required']"
-              class="text text-danger mt-1">
-                      El Correo es requerido
+              <div class="mb-4">
+                <label class="form-label">Perfil</label>
+                <mat-select formControlName="role" placeholder="Elegir Perfil">
+                    <mat-option *ngFor="let role of roles" [value]="role.slug">{{role.title}}</mat-option>
+                </mat-select>
               </div>
-              <div *ngIf="registForm.controls['email'].errors && registForm.controls['email'].touched && registForm.controls['email'].errors['email']"
-              class="text text-danger mt-1">
-                      Correo con formato invalido
+              <div class="mb-4">
+                  <label class="form-label">Correo electrónico</label>
+                  <input formControlName="email" required email type="email" class="form-control" autocomplete="new-password" placeholder="Escriba su Correo">
+                  <div *ngIf="registForm.controls['email'].errors && registForm.controls['email'].touched && registForm.controls['email'].errors['required']"
+                  class="text text-danger mt-1">
+                          El Correo es requerido
+                  </div>
+                  <div *ngIf="registForm.controls['email'].errors && registForm.controls['email'].touched && registForm.controls['email'].errors['email']"
+                  class="text text-danger mt-1">
+                          Correo con formato invalido
+                  </div>
               </div>
-          </div>
-          
-          <div class="mb-4">
-              <label class="form-label">Contraseña</label>
-              <input type="password" class="form-control" formControlName="password" required="" placeholder="********">
-              <div *ngIf="registForm.controls['password'].touched && registForm.controls['password'].errors && registForm.controls['password'].errors['required']"
-                      class="text text-danger mt-1">
-                      La Contraseña es requerida
+              
+              <div class="mb-4">
+                  <label class="form-label">Contraseña</label>
+                  <input type="password" class="form-control" formControlName="password" required="" placeholder="********">
+                  <div *ngIf="registForm.controls['password'].touched && registForm.controls['password'].errors && registForm.controls['password'].errors['required']"
+                          class="text text-danger mt-1">
+                          La Contraseña es requerida
+                  </div>
               </div>
-          </div>
-          <div class="col">
-              <div class="d-grid">
-                  <button type="submit" class="btn btn-primary" (click)="doRegist()" id="bRegistrarme" [disabled]="!registForm.valid">Crear</button>
+              <div class="col">
+                  <div class="d-grid">
+                      <button type="submit" class="btn btn-primary" (click)="doRegist()" id="bRegistrarme" [disabled]="!registForm.valid">Crear</button>
+                  </div>
               </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="flex flex-col flex-auto"  *ngIf="loading"> 
-    <div class="showLoading">
-      <mat-progress-spinner
-          [diameter]="60"
-          [mode]="'indeterminate'">
-      </mat-progress-spinner>
-      <div class="mt-2 font-medium">Procesando...</div>
+    <div class="flex flex-col flex-auto"  *ngIf="loading"> 
+        <div class="showLoading">
+          <mat-progress-spinner
+              [diameter]="60"
+              [mode]="'indeterminate'">
+          </mat-progress-spinner>
+          <div class="mt-2 font-medium">Procesando...</div>
+        </div>
     </div>
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>
