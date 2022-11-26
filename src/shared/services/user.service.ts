@@ -4,7 +4,6 @@ import { AbstractHttpService } from './abstract-http.service';
 import { of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { User } from '../model/user';
-import { ConstantService } from './constant.service';
 @Injectable()
 export class UserService extends AbstractHttpService {
 
