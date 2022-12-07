@@ -38,7 +38,7 @@ export class MyProfileComponent implements OnInit {
     this.findProfile();
   }
   private findProfile() {
-    this.subscribe.add(this.userSrv.find().subscribe(
+    this.subscribe.add(this.userSrv.findByEmail(this.perfil.email).subscribe(
       response => {
         this.user = response[0];
         console.log(this.user);

@@ -7,13 +7,17 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./activity.component.scss']
 })
 export class ActivityComponent implements OnInit {
-
+  public sideBarOpen = true;
   constructor(
     private router : Router,
     private route : ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+  }
+  
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
   }
 
 }

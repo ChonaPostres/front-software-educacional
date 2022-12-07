@@ -1,9 +1,18 @@
-<app-nav-bar></app-nav-bar>
-<div class="container-fluid">
-  <h2 class="mt-4">Actividades:</h2>
-  <div class="row row-cols-1 row-cols-md-3 my-2 g-4">
-      <div class="col col-sm-4" *ngFor="let activity of activities">
-        <button type="button" class="btn btn-lg text-white col-12" style="background-color: royalblue" (click)="goActivity(activity.id)">{{activity.title}}</button>
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sideBarOpen">
+    <!-- <mat-drawer mode="side" opened="true"> -->
+    <app-side-nav></app-side-nav>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-nav-bar (toggleSidebarForMe)="sideBarToggler()"></app-nav-bar>
+    <div class="container-fluid">
+      <h2 class="mt-4">Actividades:</h2>
+      <div class="row row-cols-1 row-cols-md-3 my-2 g-4">
+          <div class="col col-sm-4" *ngFor="let activity of activities">
+            <button type="button" class="btn btn-lg text-white col-12" style="background-color: royalblue" (click)="goActivity(activity.id)">{{activity.title}}</button>
+          </div>
       </div>
-  </div>
-</div>
+    </div>    
+  </mat-drawer-content>
+</mat-drawer-container>
+

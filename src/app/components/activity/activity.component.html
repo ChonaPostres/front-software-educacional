@@ -1,109 +1,117 @@
-<style type="text/css">
-  .btn-circle.btn-xl {
-    width: 100px;
-    height: 100px;
-    padding: 13px 18px;
-    border-radius: 60px;
-    font-size: 15px;
-    text-align: center;
-  }
-</style>
-<app-nav-bar></app-nav-bar>
-<div class="container-fluid">
-  <h1 class="mt-4 mx-5">Actividad:</h1>
-  <div class="card mt-5 mx-5" style="background-color: lightgray">
-    <div class="card-body">
-      <div class="row my-4">
-        <div class="col"style="background-color: lightgray"></div>
-        <div class="col">
-          <button type="button" class="btn btn-success btn-circle btn-xl"></button>
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sideBarOpen">
+    <!-- <mat-drawer mode="side" opened="true"> -->
+    <app-side-nav></app-side-nav>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-nav-bar (toggleSidebarForMe)="sideBarToggler()"></app-nav-bar>
+    <style type="text/css">
+      .btn-circle.btn-xl {
+        width: 100px;
+        height: 100px;
+        padding: 13px 18px;
+        border-radius: 60px;
+        font-size: 15px;
+        text-align: center;
+      }
+    </style>
+    <div class="container-fluid">
+      <h1 class="mt-4 mx-5">Actividad:</h1>
+      <div class="card mt-5 mx-5" style="background-color: lightgray">
+        <div class="card-body">
+          <div class="row my-4">
+            <div class="col"style="background-color: lightgray"></div>
+            <div class="col">
+              <button type="button" class="btn btn-success btn-circle btn-xl"></button>
+            </div>
+            <div class="col"style="background-color: lightgray"></div>
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col">
+              <button type="button" class="btn btn-success btn-circle btn-xl"></button>
+            </div>
+            <div class="col"style="background-color: lightgray"></div>
+          </div>
+          <div class="row my-4">
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col">
+              <button type="button" class="btn btn-success btn-circle btn-xl"></button>
+            </div>
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col"style="background-color: lightgray"></div>
+    
+          </div>
+          <div class="row my-4">
+            <div class="col">
+              <button type="button" class="btn btn-success btn-circle btn-xl"></button>
+            </div>
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col">
+              <button type="button" class="btn btn-success btn-circle btn-xl"></button>
+            </div>
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col"style="background-color: lightgray"></div>
+    
+          </div>
+          <div class="row my-4">
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col">
+              <button type="button" class="btn btn-danger btn-circle btn-xl"></button>
+            </div>
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col"style="background-color: lightgray"></div>
+    
+          </div>
+          <div class="row my-4">
+            <div class="col">
+              <button type="button" class="btn btn-success btn-circle btn-xl"></button>
+            </div>
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col">
+              <button type="button" class="btn btn-success btn-circle btn-xl"></button>
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col">
+              <button type="button" class="btn btn-success btn-circle btn-xl"></button>
+            </div>
+            <div class="col">
+              <button type="button" class="btn btn-success btn-circle btn-xl"></button>
+            </div>
+            <div class="col"style="background-color: lightgray"></div>
+    
+            <div class="col"style="background-color: lightgray"></div>
+    
+          </div>
         </div>
-        <div class="col"style="background-color: lightgray"></div>
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col">
-          <button type="button" class="btn btn-success btn-circle btn-xl"></button>
-        </div>
-        <div class="col"style="background-color: lightgray"></div>
       </div>
-      <div class="row my-4">
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col">
-          <button type="button" class="btn btn-success btn-circle btn-xl"></button>
-        </div>
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col"style="background-color: lightgray"></div>
-
-      </div>
-      <div class="row my-4">
-        <div class="col">
-          <button type="button" class="btn btn-success btn-circle btn-xl"></button>
-        </div>
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col">
-          <button type="button" class="btn btn-success btn-circle btn-xl"></button>
-        </div>
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col"style="background-color: lightgray"></div>
-
-      </div>
-      <div class="row my-4">
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col">
-          <button type="button" class="btn btn-danger btn-circle btn-xl"></button>
-        </div>
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col"style="background-color: lightgray"></div>
-
-      </div>
-      <div class="row my-4">
-        <div class="col">
-          <button type="button" class="btn btn-success btn-circle btn-xl"></button>
-        </div>
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col">
-          <button type="button" class="btn btn-success btn-circle btn-xl"></button>
-        </div>
-      </div>
-      <div class="row my-4">
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col">
-          <button type="button" class="btn btn-success btn-circle btn-xl"></button>
-        </div>
-        <div class="col">
-          <button type="button" class="btn btn-success btn-circle btn-xl"></button>
-        </div>
-        <div class="col"style="background-color: lightgray"></div>
-
-        <div class="col"style="background-color: lightgray"></div>
-
-      </div>
-    </div>
-  </div>
-</div>
+    </div> 
+  </mat-drawer-content>
+</mat-drawer-container>

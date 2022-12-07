@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CategoryComponent implements OnInit {
   activities:any[] = [];
+  public sideBarOpen = true;
   constructor(
     private router : Router,
     private route : ActivatedRoute
@@ -40,5 +41,8 @@ export class CategoryComponent implements OnInit {
   }
   goActivity(id: string) {
     this.router.navigate(['components/activity/'+id]);
+  }
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
   }
 }
